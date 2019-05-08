@@ -16,8 +16,11 @@ app.use(cookieParser());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Request-Method", "OPTIONS, GET, POST, PUT, DELETE");
+    res.header("Access-Control-Request-Method", "OPTIONS, GET, POST, PUT, DELETE, PATCH");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if(req.method === 'OPTIONS'){
+        return res.status(200).json({});
+    }
     next();
 });
 
